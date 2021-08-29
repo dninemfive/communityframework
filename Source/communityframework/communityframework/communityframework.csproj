@@ -71,6 +71,8 @@
     <Compile Include="Comps\HediffComps\HealPermanentWoundsConfigurable\HediffCompProperties_HealPermanentWoundsConfigurable.cs" />
     <Compile Include="Comps\HediffComps\HealPermanentWoundsConfigurable\HediffComp_HealPermanentWoundsConfigurable.cs" />
     <Compile Include="Comps\HediffComps\ShouldRemove\HediffComp_ShouldRemove.cs" />
+    <Compile Include="Comps\ThingComps\OnWearSound\ThingCompProperties_OnWearSound.cs" />
+    <Compile Include="Comps\ThingComps\OnWearSound\ThingComp_OnWearSound.cs" />
     <Compile Include="DefModExtensions\TraitRandomDiseasePool.cs" />
     <Compile Include="Enumerations\InjuryRegenListMode.cs" />
     <Compile Include="Harmony patches\Hediff_MissingPart\ShouldRemove.cs" />
