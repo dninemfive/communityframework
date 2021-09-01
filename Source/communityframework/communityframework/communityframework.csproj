@@ -74,7 +74,7 @@
     <Compile Include="Comps\ThingComps\OnWearSound\ThingCompProperties_OnWearSound.cs" />
     <Compile Include="Comps\ThingComps\OnWearSound\ThingComp_OnWearSound.cs" />
     <Compile Include="DefModExtensions\TraitRandomDiseasePool.cs" />
-    <Compile Include="Enumerations\InjuryRegenListMode.cs" />
+    <Compile Include="Extensions\Pawn_Extensions.cs" />
     <Compile Include="Harmony patches\Hediff_MissingPart\ShouldRemove.cs" />
     <Compile Include="Harmony patches\Pawn_HealthTracker\AddHediff.cs" />
     <Compile Include="Harmony patches\Pawn_HealthTracker\HealthTick.cs" />
@@ -95,6 +95,8 @@
     <Compile Include="Harmony patches\CompAffectedByFacilities\Notify_LinkRemoved.cs" />
     <Compile Include="RecipeWorker\Recipe_InstallOrReplaceImplant.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Comps\ThingComps\IgnoreNeed\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

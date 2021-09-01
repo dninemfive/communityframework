@@ -13,11 +13,25 @@ namespace CF
     {
         ThingCompProperties_OnWearSound Props =>
             (ThingCompProperties_OnWearSound)props;
+
         public override void Notify_Equipped(Pawn pawn)
         {
-            Props.sound.PlayOneShot(
-                new TargetInfo(pawn.Position, pawn.Map, false));
+            if (Props.wornSound != null && pawn.Map == Find.CurrentMap)
+            {
+                Props.wornSound.PlayOneShot(
+                    new TargetInfo(pawn.Position, pawn.Map, false));
+            }
             base.Notify_Equipped(pawn);
+        }
+
+        public override void Notify_Unequipped(Pawn pawn)
+        {
+            if (Props.removedSound != null && pawn.Map == Find.CurrentMap)
+            {
+                Props.removedSound.PlayOneShot(
+                    new TargetInfo(pawn.Position, pawn.Map, false));
+            }
+            base.Notify_Unequipped(pawn);
         }
     }
 }

@@ -10,7 +10,8 @@ namespace CF
 {
     class ThingCompProperties_OnWearSound : CompProperties
     {
-        public SoundDef sound;
+        public SoundDef wornSound = null;
+        public SoundDef removedSound = null;
 
         public ThingCompProperties_OnWearSound() =>
             compClass = typeof(ThingComp_OnWearSound);
