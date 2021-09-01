@@ -32,6 +32,41 @@ namespace CF
                     dominantIngredient,
                     billGiver,
                     precept);
+
+                // Notify the dominant ingredient first because order of
+                // execution matters.
+                if (dominantIngredient is ThingWithComps dominantWithComps)
+                {
+                    dominantWithComps.Notify_ThingCrafted(
+                        ref __result,
+                        recipeDef,
+                        worker,
+                        ingredients,
+                        dominantIngredient,
+                        billGiver,
+                        precept);
+                }
+
+                foreach (Thing thing in ingredients)
+                {
+                    // We already notified the dominant ingredient, so it would
+                    // be a bad idea to notify it again.
+                    if (thing == dominantIngredient)
+                    {
+                        continue;
+                    }
+                    if (thing is ThingWithComps thingWithComps)
+                    {
+                        thingWithComps.Notify_ThingCrafted(
+                            ref __result,
+                            recipeDef,
+                            worker,
+                            ingredients,
+                            dominantIngredient,
+                            billGiver,
+                            precept);
+                    }
+                }
             }
         }
     }

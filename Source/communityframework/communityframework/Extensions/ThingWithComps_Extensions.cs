@@ -24,6 +24,8 @@ namespace CF
             {
                 if (c is ThingComp_OnThingCrafted o)
                 {
+                    // This whole code block is just one function call with a
+                    // lot of parameters.
                     o.Notify_ThingCrafted(
                         ref products,
                         recipeDef,
@@ -34,9 +36,9 @@ namespace CF
                         precept);
                 }
             }
-            // We don't really need this pawn check right now because this
-            // extension is only ever called for the bill worker, but we may as
-            // well put it here in case that changes in the future.
+
+            // Only Pawns have Hediffs, so only check for a HediffSet if we're
+            // looking at a pawn.
             if (thing is Pawn pawn)
             {
                 foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
