@@ -32,6 +32,21 @@ namespace CF
                     dominantIngredient,
                     billGiver,
                     precept);
+                
+                // If the billGiver is a ThingWithComps (i.e.
+                // Building_WorkTable), then notify it that somthing has been
+                // crafted with it.
+                if (billGiver is ThingWithComps giverWithComps)
+                {
+                    giverWithComps.Notify_ThingCrafted(
+                        ref __result,
+                        recipeDef,
+                        worker,
+                        ingredients,
+                        dominantIngredient,
+                        billGiver,
+                        precept);
+                }
 
                 // Notify the dominant ingredient first because order of
                 // execution matters.

@@ -23,9 +23,15 @@ namespace CF
         public static void DoPatching()
         {
             //Start patching all harmony patches.
-            var harmony = new Harmony("com.communityframework.harmonypatches");
+            string id = "com.communityframework.harmonypatches";
+            var harmony = new Harmony(id);
             Log.Message("Community Framework patching started.");
+
+            // Run all annotated patches.
             harmony.PatchAll();
+
+            // There are currently no manual harmony patches. But if there
+            // were any, they would go here.
         }
 
     }
