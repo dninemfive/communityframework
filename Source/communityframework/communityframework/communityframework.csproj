@@ -103,8 +103,6 @@
     <Compile Include="Harmony patches\CompAffectedByFacilities\Notify_LinkRemoved.cs" />
     <Compile Include="RecipeWorker\Recipe_InstallOrReplaceImplant.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Comps\ThingComps\IgnoreNeed\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
