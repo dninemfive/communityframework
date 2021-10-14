@@ -298,12 +298,22 @@ namespace CF
         /// <param name="hediff">
         /// The <c>Hediff</c> to check.
         /// </param>
+        /// <param name="careIfAddedAncestor">If true, missing parts will not be
+        /// counted as an injury if any ancestor has any ancestor with "added
+        /// parts", i.e. bionics.</param>
         /// <returns>
         /// <c>true</c>, if the specified <c>Hediff</c> is some form of injury
         /// or missing part.
         /// </returns>
-        public static bool HediffIsInjury(Hediff hediff) =>
-            hediff is Hediff_Injury || hediff is Hediff_MissingPart;
+        public static bool HediffIsInjury(
+            Hediff hediff,
+            bool careIfAddedAncestor = false) =>
+            hediff is Hediff_Injury || 
+            hediff is Hediff_MissingPart && (!careIfAddedAncestor || 
+            // If we care about ancestors with added parts, then we check for
+            // that here.
+            !hediff.pawn.health.hediffSet.
+                PartOrAnyAncestorHasDirectlyAddedParts(hediff.Part));
 
         /// <summary>
         /// Recursively restores each part of a given limb.
@@ -490,7 +500,7 @@ namespace CF
                 {
                     //Account for auto-whitelisted injuries.
                     if (mode == InjuryRegenListMode.Whitelist &&
-                        HediffIsInjury(hediff))
+                        HediffIsInjury(hediff, true))
                         return true;
                 }
                 //If any whitelist is in use, but neither whitelist accepts the
@@ -500,7 +510,7 @@ namespace CF
             //Don't allow any injuries that have made it this far if injuries
             //are auto-blacklisted.
             if (mode == InjuryRegenListMode.Blacklist &&
-                HediffIsInjury(hediff))
+                HediffIsInjury(hediff, true))
                 return false;
             return true;
         }
