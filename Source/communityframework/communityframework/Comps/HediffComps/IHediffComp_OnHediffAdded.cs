@@ -14,7 +14,7 @@ namespace CF
     /// method, <c>OnHediffAdded</c>, which is called whenever a sibling
     /// <c>Hediff</c> is added to the parent's <c>Pawn</c>.
     /// </summary>
-    public abstract class HediffComp_OnHediffAdded : HediffComp
+    public interface IHediffComp_OnHediffAdded
     {
         /// <summary>
         /// Empty method meant to be overriden. This method will run whenever
@@ -22,8 +22,6 @@ namespace CF
         /// <c>Pawn</c>.
         /// </summary>
         /// <param name="hediff">The <c>Hediff</c> that was just added.</param>
-        public virtual void OnHediffAdded (ref Hediff hediff)
-        {
-        }
+        void OnHediffAdded(ref Hediff hediff);
     }
 }

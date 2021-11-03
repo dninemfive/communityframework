@@ -309,7 +309,8 @@ namespace CF
             Hediff hediff,
             bool careIfAddedAncestor = false) =>
             hediff is Hediff_Injury || 
-            hediff is Hediff_MissingPart && (!careIfAddedAncestor || 
+            hediff is Hediff_MissingPart &&
+            (!careIfAddedAncestor || 
             // If we care about ancestors with added parts, then we check for
             // that here.
             !hediff.pawn.health.hediffSet.

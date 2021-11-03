@@ -50,7 +50,7 @@ namespace CF
         {
             foreach (ThingComp c in thing.AllComps)
             {
-                if (c is ThingComp_OnThingCrafted o)
+                if (c is IThingComp_OnThingCrafted o)
                 {
                     // This whole code block is just one function call with a
                     // lot of parameters.

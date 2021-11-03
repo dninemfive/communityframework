@@ -13,7 +13,7 @@ namespace CF
     /// ingredients, that are supposed to react a certain way whenever they are
     /// involved in a recipe.
     /// </summary>
-    public abstract class ThingComp_OnThingCrafted : ThingComp
+    public interface IThingComp_OnThingCrafted
     {
         /// <summary>
         /// This method is called whenever the parent <c>Thing</c> is involved
@@ -41,7 +41,7 @@ namespace CF
         /// the recipe is being performed on.</param>
         /// <param name="precept">The style given to the resulting
         /// <c>Thing</c>s.</param>
-        public abstract void Notify_ThingCrafted(
+        void Notify_ThingCrafted(
             ref IEnumerable<Thing> products,
             RecipeDef recipeDef,
             Pawn worker,

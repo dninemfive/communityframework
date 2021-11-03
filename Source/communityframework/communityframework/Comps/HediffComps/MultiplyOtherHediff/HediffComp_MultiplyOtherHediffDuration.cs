@@ -14,7 +14,7 @@ namespace CF
     /// amount. Can be used to artificially increase or decrease the lengths of
     /// certain <c>Hediff</c>s.
     /// </summary>
-    class HediffComp_MultiplyOtherHediffDuration : HediffComp_OnHediffAdded
+    class HediffComp_MultiplyOtherHediffDuration : IHediffComp_OnHediffAdded
     {
         /// <summary>
         /// Pre-cast reference to this comp's corresponding properties,

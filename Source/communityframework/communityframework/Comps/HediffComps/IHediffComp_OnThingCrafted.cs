@@ -12,7 +12,7 @@ namespace CF
     /// Base <c>HediffComp</c> for <c>Hediff</c>s that are supposed to react
     /// whenever the affected pawn crafts something
     /// </summary>
-    public abstract class HediffComp_OnThingCrafted : HediffComp
+    public interface IHediffComp_OnThingCrafted
     {
         /// <summary>
         /// This method is called whenever the affected <c>Pawn</c> crafts an
@@ -34,7 +34,7 @@ namespace CF
         /// the recipe is being performed on.</param>
         /// <param name="precept">The style given to the resulting
         /// <c>Thing</c>s.</param>
-        public abstract void Notify_ThingCrafted(
+        void Notify_ThingCrafted(
             ref IEnumerable<Thing> products,
             RecipeDef recipeDef,
             Pawn worker,

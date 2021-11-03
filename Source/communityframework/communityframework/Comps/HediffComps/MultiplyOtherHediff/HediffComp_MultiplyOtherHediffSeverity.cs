@@ -14,7 +14,7 @@ namespace CF
     /// increase or decrease the magnitude or duration of certain
     /// <c>Hediff</c>s.
     /// </summary>
-    class HediffComp_MultiplyOtherHediffSeverity : HediffComp_OnHediffAdded
+    class HediffComp_MultiplyOtherHediffSeverity : IHediffComp_OnHediffAdded
     {
         /// <summary>
         /// Pre-cast reference to this comp's corresponding properties,

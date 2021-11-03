@@ -47,7 +47,7 @@ namespace CF
         {
             foreach (HediffComp c in h.comps)
             {
-                if (c is HediffComp_OnThingCrafted o)
+                if (c is IHediffComp_OnThingCrafted o)
                 {
                     o.Notify_ThingCrafted(
                         ref products,
