@@ -9,8 +9,11 @@ using RimWorld;
 namespace CF
 {
     /// <summary>
-    /// Base <c>HediffComp</c> for <c>Hediff</c>s that are supposed to react
-    /// whenever the affected pawn crafts something
+    /// An Interface that allows <c>Hediff</c>s to run a method,
+    /// <c>Notify_ThingCrafted</c>, whenever the affected <c>Pawn</c> is
+    /// involved in a recipe. In most cases, this will be called when the
+    /// affected <c>Pawn</c> is the one doing the recipe, but it will also be
+    /// called if the affected <c>Pawn</c> receives surgery.
     /// </summary>
     public interface IHediffComp_OnThingCrafted
     {

@@ -30,20 +30,20 @@ namespace CF
         /// interaction.</param>
         /// <param name="isRandom"><c>true</c> if the interaction occured
         /// randomly.</param>
-        public static void postfix(
+        public static void Postfix(
             ref bool __result,
             Pawn pawn,
             InteractionDef interaction,
             bool isInitiator,
             bool isRandom)
         {
+            if (!isRandom) { return; }
             InteractionFilter filter =
                 pawn.def.GetModExtension<InteractionFilter>();
-
-            if (filter != null && 
-                filter.IsInteractionDisabled(interaction, isInitiator))
+            if (filter != null)
             {
-                __result = true;
+                __result = !filter.IsInteractionAllowed(interaction, isInitiator);
+                Log.Message(__result.ToString());
             }
         }
     }

@@ -59,8 +59,8 @@
   <ItemGroup>
     <Compile Include="Comps\HediffComps\CraftedQualityOffset\HediffCompProperties_CraftedQualityOffset.cs" />
     <Compile Include="Comps\HediffComps\CraftedQualityOffset\HediffComp_CraftedQualityOffset.cs" />
-    <Compile Include="Comps\HediffComps\HediffComp_OnHediffAdded.cs" />
-    <Compile Include="Comps\HediffComps\HediffComp_OnThingCrafted.cs" />
+    <Compile Include="Comps\HediffComps\IHediffComp_OnHediffAdded.cs" />
+    <Compile Include="Comps\HediffComps\IHediffComp_OnThingCrafted.cs" />
     <Compile Include="Comps\HediffComps\MultiplyOtherHediff\HediffCompProperties_MultiplyOtherHediff.cs" />
     <Compile Include="Comps\HediffComps\MultiplyOtherHediff\HediffComp_MultiplyOtherHediffDuration.cs" />
     <Compile Include="Comps\HediffComps\MultiplyOtherHediff\HediffComp_MultiplyOtherHediffSeverity.cs" />
@@ -74,7 +74,7 @@
     <Compile Include="Comps\HediffComps\ShouldRemove\HediffComp_ShouldRemove.cs" />
     <Compile Include="Comps\ThingComps\OnWearSound\ThingCompProperties_OnWearSound.cs" />
     <Compile Include="Comps\ThingComps\OnWearSound\ThingComp_OnWearSound.cs" />
-    <Compile Include="Comps\ThingComps\ThingComp_OnThingCrafted.cs" />
+    <Compile Include="Comps\ThingComps\IThingComp_OnThingCrafted.cs" />
     <Compile Include="DefModExtensions\InteractionFilter.cs" />
     <Compile Include="DefModExtensions\TraitRandomDiseasePool.cs" />
     <Compile Include="Extensions\HediffWithComps_Extensions.cs" />

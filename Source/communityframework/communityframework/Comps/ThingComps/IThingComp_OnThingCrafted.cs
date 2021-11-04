@@ -9,9 +9,10 @@ using RimWorld;
 namespace CF
 {
     /// <summary>
-    /// Base <c>ThingComp</c> for <c>Thing</c>s, such as workbenches, races, or
-    /// ingredients, that are supposed to react a certain way whenever they are
-    /// involved in a recipe.
+    /// An Interface that allows <c>ThingComp</c>s to run a method,
+    /// <c>Notify_ThingCrafted</c>, whenever its parent <c>Thing</c> is
+    /// involved in a recipe. Can be used on Races (crafter, surgery target), 
+    /// Things (inputs and outputs), and buildings (workbenches).
     /// </summary>
     public interface IThingComp_OnThingCrafted
     {
@@ -22,7 +23,7 @@ namespace CF
         /// </summary>
         /// <remarks>
         /// No distinction is made here as to whether the parent is the
-        /// bill-giver, thhe bill-doer, or an ingredient. Such checks should
+        /// bill-giver, the bill-doer, or an ingredient. Such checks should
         /// therefore be made in the method body (i.e. if <c>parent != worker
         /// </c> then return).
         /// </remarks>

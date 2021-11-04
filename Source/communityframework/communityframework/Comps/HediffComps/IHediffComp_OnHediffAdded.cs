@@ -9,10 +9,8 @@ using RimWorld;
 namespace CF
 {
     /// <summary>
-    /// A base for other <c>HediffComp</c>s to derive from. It is functionally
-    /// identical to <c>Verse.HediffComp</c>, except that it has an additional
-    /// method, <c>OnHediffAdded</c>, which is called whenever a sibling
-    /// <c>Hediff</c> is added to the parent's <c>Pawn</c>.
+    /// An interface that allows <c>Hediff</c>s to run a method,
+    /// <c>OnHediffAdded</c>, whenever a sibling <c>Hediff</c> is added.
     /// </summary>
     public interface IHediffComp_OnHediffAdded
     {
