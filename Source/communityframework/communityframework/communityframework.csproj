@@ -75,14 +75,12 @@
     <Compile Include="Comps\ThingComps\OnWearSound\ThingCompProperties_OnWearSound.cs" />
     <Compile Include="Comps\ThingComps\OnWearSound\ThingComp_OnWearSound.cs" />
     <Compile Include="Comps\ThingComps\IThingComp_OnThingCrafted.cs" />
-    <Compile Include="DefModExtensions\InteractionFilter.cs" />
     <Compile Include="DefModExtensions\TraitRandomDiseasePool.cs" />
     <Compile Include="Extensions\HediffWithComps_Extensions.cs" />
     <Compile Include="Extensions\Pawn_Extensions.cs" />
     <Compile Include="Extensions\ThingWithComps_Extensions.cs" />
     <Compile Include="Harmony patches\GenRecipe\MakeRecipeProducts.cs" />
     <Compile Include="Harmony patches\Hediff_MissingPart\ShouldRemove.cs" />
-    <Compile Include="Harmony patches\PawnUtility\IsInteractionBlocked.cs" />
     <Compile Include="Harmony patches\Pawn_HealthTracker\AddHediff.cs" />
     <Compile Include="Harmony patches\Pawn_HealthTracker\HealthTick.cs" />
     <Compile Include="Harmony patches\Pawn_PathFollower\CostToMoveIntoCell.cs" />
