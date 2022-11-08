@@ -40,6 +40,7 @@ namespace CF
         public string barTex = null;
         public Color? emptyBarColor = null;
         public string emptyBarTex = null;
+        public float gizmoWidth = 140f;
         public CompProperties_CustomShield()
         {
             compClass = typeof(CompCustomShield);

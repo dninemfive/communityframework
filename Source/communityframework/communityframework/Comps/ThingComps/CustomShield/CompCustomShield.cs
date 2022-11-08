@@ -13,7 +13,6 @@ namespace CF
     /// In 1.4, shield belts were refactored to be comps, and can be set to be ranged with using CompProperties. However, many variables are still
     /// hardcoded, and things can't be overridden, so this class allows that.
     /// </summary>
-    [StaticConstructorOnStartup]
     public class CompCustomShield : ThingComp
     {
         // need backing values to use Scribe_Values
@@ -40,8 +39,7 @@ namespace CF
         public float MaxDamagedJitterDist => Props.maxDamagedJitterDist;
         public float JitterDurationTicks => Props.jitterDurationTicks;
         public int KeepDisplayingTicks => Props.keepDisplayingTicks;
-        public float ApparelScorePerEnergyMax => Props.apparelScorePerEnergyMax;
-        public static readonly Material DefaultBubbleMat = MaterialPool.MatFrom("Other/ShieldBubble", ShaderDatabase.Transparent);
+        public float ApparelScorePerEnergyMax => Props.apparelScorePerEnergyMax;        
         public CompProperties_CustomShield Props => props as CompProperties_CustomShield;
         public float EnergyMax => Props.energyMax ?? parent.GetStatValue(StatDefOf.EnergyShieldEnergyMax);
         public float EnergyGainPerTick => (Props.energyGainPerTick ?? parent.GetStatValue(StatDefOf.EnergyShieldRechargeRate)) / 60f;
@@ -80,10 +78,13 @@ namespace CF
             Scribe_Values.Look(ref energy, "energy", 0f);
             Scribe_Values.Look(ref ticksToReset, "ticksToReset", -1);
             Scribe_Values.Look(ref lastKeepDisplayTick, "lastKeepDisplayTick", 0);
-        }
+        }        
         public virtual IEnumerable<Gizmo> GetGizmos()
         {
-            if((PawnOwner.Faction == Faction.OfPlayer || (parent is Pawn pawn && pawn.RaceProps.IsMechanoid)) && Find.Selector.SingleSelectedThing == PawnOwner)
+            // these bools just to make the if statement more readable
+            bool ownerIsFactionPawn = PawnOwner.Faction == Faction.OfPlayer;
+            bool parentIsMechanoid = parent is Pawn pawn && pawn.RaceProps.IsMechanoid;
+            if((ownerIsFactionPawn || parentIsMechanoid) && Find.Selector.SingleSelectedThing == PawnOwner)
             {
                 yield return new Gizmo_EnergyShieldStatus()
                 {
