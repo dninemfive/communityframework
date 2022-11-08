@@ -17,24 +17,25 @@ namespace CF
         public override float GetWidth(float maxWidth) => Shield.Props.gizmoWidth;
         public Texture2D FullShieldBarTex => ShieldDefaults.FullShieldBarTex;
         public Texture2D EmptyShieldBarTex => ShieldDefaults.EmptyShieldBarTex;
-        public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms parms)
+        public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms _)
         {
             Rect background = new Rect(topLeft.x, topLeft.y, GetWidth(maxWidth), 75f);
-            Rect foreground = background.ContractedBy(6f);
+            Rect tooltipRegion = background.ContractedBy(6f);
             Widgets.DrawWindowBackground(background);
-            Rect foreground2 = foreground;
-            foreground2.height = background.height / 2f;
+            Rect labelRegion = tooltipRegion;
+            labelRegion.height = background.height / 2f;
             Text.Font = GameFont.Tiny;
-            Widgets.Label(foreground2, Shield.IsApparel ? Shield.parent.LabelCap : "ShieldInbuilt".Translate().Resolve());
-            Rect energyBar = foreground;
-            energyBar.yMin = foreground.y + foreground.height / 2f;
+            Widgets.Label(labelRegion, Shield.Props.customNameKey?.Translate().Resolve() ?? 
+                (Shield.IsApparel ? Shield.parent.LabelCap : ShieldDefaults.InbuiltShieldName));
+            Rect energyBar = tooltipRegion;
+            energyBar.yMin = tooltipRegion.y + tooltipRegion.height / 2f;
             float fillPercent = Shield.Energy / Mathf.Max(1f, Shield.EnergyMax);
             Widgets.FillableBar(energyBar, fillPercent, FullShieldBarTex, EmptyShieldBarTex, doBorder: false);
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.MiddleCenter;
             Widgets.Label(energyBar, $"{Shield.Energy * 100f:F0} / {Shield.EnergyMax * 100f:F0}");
             Text.Anchor = TextAnchor.UpperLeft;
-            TooltipHandler.TipRegion(foreground, "ShieldPersonalTip".Translate());
+            TooltipHandler.TipRegion(tooltipRegion, Shield.Props.customTooltipKey?.Translate() ?? ShieldDefaults.PersonalShieldTooltip);
             return new GizmoResult(GizmoState.Clear);
         }
     }

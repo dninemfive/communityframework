@@ -41,6 +41,8 @@ namespace CF
         public Color? emptyBarColor = null;
         public string emptyBarTex = null;
         public float gizmoWidth = 140f;
+        public string customNameKey = null;
+        public string customTooltipKey = null;
         public CompProperties_CustomShield()
         {
             compClass = typeof(CompCustomShield);
