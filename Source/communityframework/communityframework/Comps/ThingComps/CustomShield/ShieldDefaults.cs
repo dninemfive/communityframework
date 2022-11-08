@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +17,18 @@ namespace CF
         public static readonly Material BubbleMat = MaterialPool.MatFrom("Other/ShieldBubble", ShaderDatabase.Transparent);
         public static readonly string InbuiltShieldName = "ShieldInbuilt".Translate().Resolve();
         public static readonly TaggedString PersonalShieldTooltip = "ShieldPersonalTip".Translate();
+        public static readonly Command_Action DevAction_Break = new Command_Action()
+        {
+            defaultLabel = "DEV: Break"
+        };
+        public static readonly Command_Action DevAction_ClearReset = new Command_Action()
+        {
+            defaultLabel = "DEV: Clear reset"            
+        };
+        public static SoundDef AbsorbDamageSound => SoundDefOf.EnergyShield_AbsorbDamage;
+        public static FleckDef AbsorbDamageFleck => FleckDefOf.ExplosionFlash;
+        public static EffecterDef BreakEffecter => EffecterDefOf.Shield_Break;
+        public static FleckDef BreakFleck => FleckDefOf.ExplosionFlash;
+        public static SoundDef ResetSound => SoundDefOf.EnergyShield_Reset;
     }
 }

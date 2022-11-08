@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Verse;
 
 namespace CF
 {
@@ -43,6 +44,17 @@ namespace CF
         public float gizmoWidth = 140f;
         public string customNameKey = null;
         public string customTooltipKey = null;
+        public List<DamageDef> instantBreakDamageDefs = new List<DamageDef>() { DamageDefOf.EMP };
+        public List<DamageDef> extraAbsorbDamageDefs = new List<DamageDef>();
+        public bool absorbRangedDamage = true;
+        public bool absorbExplosiveDamage = true;
+        public bool absorbAllDamage = false;
+        public SoundDef absorbDamageSound = null;
+        public FleckDef absorbDamageFleck = null;
+        public EffecterDef breakEffecter = null;
+        public FleckDef breakFleck = null;
+        public SoundDef resetSound = null;
+        public List<Verb> verbsToBlock = new List<Verb>();
         public CompProperties_CustomShield()
         {
             compClass = typeof(CompCustomShield);

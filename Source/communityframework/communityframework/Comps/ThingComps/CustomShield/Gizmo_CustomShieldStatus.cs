@@ -12,7 +12,7 @@ namespace CF
     [StaticConstructorOnStartup]
     public class Gizmo_CustomShieldStatus : Gizmo
     {
-        public CompCustomShield Shield { get; private set; }
+        public CompCustomShield Shield { get; set; }
         public Gizmo_CustomShieldStatus() { Order = -100f; }
         public override float GetWidth(float maxWidth) => Shield.Props.gizmoWidth;
         public Texture2D FullShieldBarTex => ShieldDefaults.FullShieldBarTex;
