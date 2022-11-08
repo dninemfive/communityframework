@@ -36,7 +36,7 @@ namespace CF
             protected set => lastKeepDisplayTick = value;
         }
         private Vector3 ImpactAngleVec;
-        public virtual int LastAbsorbDamageTick { get; private set; }
+        public virtual int LastAbsorbDamageTick { get; protected set; }
         public float MaxDamagedJitterDist => Props.maxDamagedJitterDist;
         public float JitterDurationTicks => Props.jitterDurationTicks;
         public int KeepDisplayingTicks => Props.keepDisplayingTicks;
