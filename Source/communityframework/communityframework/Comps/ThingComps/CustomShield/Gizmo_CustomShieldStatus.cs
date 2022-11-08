@@ -15,8 +15,24 @@ namespace CF
         public CompCustomShield Shield { get; set; }
         public Gizmo_CustomShieldStatus() { Order = -100f; }
         public override float GetWidth(float maxWidth) => Shield.Props.gizmoWidth;
-        public Texture2D FullShieldBarTex => ShieldDefaults.FullShieldBarTex;
-        public Texture2D EmptyShieldBarTex => ShieldDefaults.EmptyShieldBarTex;
+        public Texture2D FullShieldBarTex
+        {
+            get
+            {
+                if (Shield.Props.barTex != null) return ContentFinder<Texture2D>.Get(Shield.Props.barTex);
+                if (Shield.Props.barColor != null) return SolidColorMaterials.NewSolidColorTexture(Shield.Props.barColor.Value);
+                return ShieldDefaults.FullShieldBarTex;
+            }
+        }
+        public Texture2D EmptyShieldBarTex
+        {
+            get
+            {
+                if (Shield.Props.emptyBarTex != null) return ContentFinder<Texture2D>.Get(Shield.Props.emptyBarTex);
+                if (Shield.Props.barColor != null) return SolidColorMaterials.NewSolidColorTexture(Shield.Props.emptyBarColor.Value);
+                return ShieldDefaults.EmptyShieldBarTex;
+            }
+        }
         public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms _)
         {
             Rect background = new Rect(topLeft.x, topLeft.y, GetWidth(maxWidth), 75f);
