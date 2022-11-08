@@ -87,10 +87,7 @@ namespace CF
             bool parentIsMechanoid = parent is Pawn pawn && pawn.RaceProps.IsMechanoid;
             if((ownerIsFactionPawn || parentIsMechanoid) && Find.Selector.SingleSelectedThing == PawnOwner)
             {
-                yield return new Gizmo_CustomShieldStatus()
-                {
-                    Shield = this
-                };
+                yield return new Gizmo_CustomShieldStatus(this);
             }
             // Moved here from CompGetWornGizmosExtra because they should still work for built-in shields
             if (!DebugSettings.ShowDevGizmos) yield break;

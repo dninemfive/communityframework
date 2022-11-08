@@ -12,9 +12,12 @@ namespace CF
     [StaticConstructorOnStartup]
     public class Gizmo_CustomShieldStatus : Gizmo
     {
-        public CompCustomShield Shield { get; set; }
-        public Gizmo_CustomShieldStatus() { Order = -100f; }
-        public override float GetWidth(float maxWidth) => Shield.Props.gizmo.width;
+        public CompCustomShield Shield { get; protected set; }
+        public virtual string Label => Shield.Props.gizmo.customNameKey?.Translate().Resolve() ??
+                                      (Shield.IsApparel ? Shield.parent.LabelCap : ShieldDefaults.InbuiltShieldName);
+        public virtual string EnergyLabel => $"{Shield.Energy * 100f:F0} / {Shield.EnergyMax * 100f:F0}";
+        public virtual TaggedString Tooltip => Shield.Props.gizmo.customTooltipKey?.Translate() ?? ShieldDefaults.PersonalShieldTooltip;
+        #region textures
         public Texture2D FullShieldBarTex
         {
             get
@@ -33,10 +36,13 @@ namespace CF
                 return ShieldDefaults.EmptyShieldBarTex;
             }
         }
-        public virtual string Label => Shield.Props.gizmo.customNameKey?.Translate().Resolve() ??
-                                      (Shield.IsApparel ? Shield.parent.LabelCap : ShieldDefaults.InbuiltShieldName);
-        public virtual string EnergyLabel => $"{Shield.Energy * 100f:F0} / {Shield.EnergyMax * 100f:F0}";
-        public virtual TaggedString Tooltip => Shield.Props.gizmo.customTooltipKey?.Translate() ?? ShieldDefaults.PersonalShieldTooltip;
+        #endregion textures
+        public Gizmo_CustomShieldStatus(CompCustomShield shield)
+        {
+            Order = -100f;
+            Shield = shield;
+        }
+        public override float GetWidth(float _) => Shield.Props.gizmo.width;        
         public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms _)
         {
             Rect background = new Rect(topLeft.x, topLeft.y, GetWidth(maxWidth), 75f);
