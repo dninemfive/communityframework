@@ -17,13 +17,15 @@ namespace CF
         public static readonly Material BubbleMat = MaterialPool.MatFrom("Other/ShieldBubble", ShaderDatabase.Transparent);
         public static readonly string InbuiltShieldName = "ShieldInbuilt".Translate().Resolve();
         public static readonly TaggedString PersonalShieldTooltip = "ShieldPersonalTip".Translate();
-        public static readonly Command_Action DevAction_Break = new Command_Action()
+        public static Command_Action DevAction_Break(CompCustomShield ccs) => new Command_Action()
         {
-            defaultLabel = "DEV: Break"
+            defaultLabel = "DEV: Break",
+            action = ccs.Break
         };
-        public static readonly Command_Action DevAction_ClearReset = new Command_Action()
+        public static Command_Action DevAction_Reset(CompCustomShield ccs) => new Command_Action()
         {
-            defaultLabel = "DEV: Clear reset"            
+            defaultLabel = "DEV: Clear reset",
+            action = ccs.Reset
         };
         public static SoundDef AbsorbDamageSound => SoundDefOf.EnergyShield_AbsorbDamage;
         public static FleckDef AbsorbDamageFleck => FleckDefOf.ExplosionFlash;

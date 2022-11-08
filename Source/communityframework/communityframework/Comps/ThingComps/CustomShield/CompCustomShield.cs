@@ -91,8 +91,8 @@ namespace CF
             }
             // Moved here from CompGetWornGizmosExtra because they should still work for built-in shields
             if (!DebugSettings.ShowDevGizmos) yield break;
-            yield return ShieldDefaults.DevAction_Break;
-            if (ShieldState is ShieldState.Resetting) yield return ShieldDefaults.DevAction_ClearReset;
+            yield return ShieldDefaults.DevAction_Break(this);
+            if (ShieldState is ShieldState.Resetting) yield return ShieldDefaults.DevAction_Reset(this);
         }
         public override IEnumerable<Gizmo> CompGetWornGizmosExtra()
         {
