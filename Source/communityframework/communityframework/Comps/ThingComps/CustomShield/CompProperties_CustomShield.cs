@@ -65,7 +65,7 @@ namespace CF
             /// <summary>
             /// The width of the shield gizmo.
             /// </summary>
-            public float gizmoWidth = 140f;
+            public float width = 140f;
             /// <summary>
             /// A custom shield name, to override the thing's name if this comp is on an Apparel item, or the default "builtin" string if it's a built-in shield.
             /// </summary>
@@ -78,7 +78,7 @@ namespace CF
         /// <summary>
         /// The properties of the gizmo associated with this shield. See the description for <see cref="GizmoProps">GizmoProps</see> for more details.
         /// </summary>
-        public GizmoProps gizmoProperties = null;
+        public GizmoProps gizmo = null;
         /// <summary>
         /// <see cref="DamageDef">DamageDef</see>s which cause the shield to instantly break. By default, this is only EMP damage.
         /// </summary>

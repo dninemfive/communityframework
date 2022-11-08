@@ -14,13 +14,13 @@ namespace CF
     {
         public CompCustomShield Shield { get; set; }
         public Gizmo_CustomShieldStatus() { Order = -100f; }
-        public override float GetWidth(float maxWidth) => Shield.Props.gizmoWidth;
+        public override float GetWidth(float maxWidth) => Shield.Props.gizmo.width;
         public Texture2D FullShieldBarTex
         {
             get
             {
-                if (Shield.Props.barTex != null) return ContentFinder<Texture2D>.Get(Shield.Props.barTex);
-                if (Shield.Props.barColor != null) return SolidColorMaterials.NewSolidColorTexture(Shield.Props.barColor.Value);
+                if (Shield.Props.gizmo.fullBarTex != null) return ContentFinder<Texture2D>.Get(Shield.Props.gizmo.fullBarTex);
+                if (Shield.Props.gizmo.fullBarColor != null) return SolidColorMaterials.NewSolidColorTexture(Shield.Props.gizmo.fullBarColor.Value);
                 return ShieldDefaults.FullShieldBarTex;
             }
         }
@@ -28,11 +28,15 @@ namespace CF
         {
             get
             {
-                if (Shield.Props.emptyBarTex != null) return ContentFinder<Texture2D>.Get(Shield.Props.emptyBarTex);
-                if (Shield.Props.barColor != null) return SolidColorMaterials.NewSolidColorTexture(Shield.Props.emptyBarColor.Value);
+                if (Shield.Props.gizmo.emptyBarTex != null) return ContentFinder<Texture2D>.Get(Shield.Props.gizmo.emptyBarTex);
+                if (Shield.Props.gizmo.emptyBarColor != null) return SolidColorMaterials.NewSolidColorTexture(Shield.Props.gizmo.emptyBarColor.Value);
                 return ShieldDefaults.EmptyShieldBarTex;
             }
         }
+        public virtual string Label => Shield.Props.gizmo.customNameKey?.Translate().Resolve() ??
+                                      (Shield.IsApparel ? Shield.parent.LabelCap : ShieldDefaults.InbuiltShieldName);
+        public virtual string EnergyLabel => $"{Shield.Energy * 100f:F0} / {Shield.EnergyMax * 100f:F0}";
+        public virtual TaggedString Tooltip => Shield.Props.gizmo.customTooltipKey?.Translate() ?? ShieldDefaults.PersonalShieldTooltip;
         public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms _)
         {
             Rect background = new Rect(topLeft.x, topLeft.y, GetWidth(maxWidth), 75f);
@@ -41,17 +45,16 @@ namespace CF
             Rect labelRegion = tooltipRegion;
             labelRegion.height = background.height / 2f;
             Text.Font = GameFont.Tiny;
-            Widgets.Label(labelRegion, Shield.Props.customNameKey?.Translate().Resolve() ?? 
-                (Shield.IsApparel ? Shield.parent.LabelCap : ShieldDefaults.InbuiltShieldName));
+            Widgets.Label(labelRegion, Label);
             Rect energyBar = tooltipRegion;
             energyBar.yMin = tooltipRegion.y + tooltipRegion.height / 2f;
             float fillPercent = Shield.Energy / Mathf.Max(1f, Shield.EnergyMax);
             Widgets.FillableBar(energyBar, fillPercent, FullShieldBarTex, EmptyShieldBarTex, doBorder: false);
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.MiddleCenter;
-            Widgets.Label(energyBar, $"{Shield.Energy * 100f:F0} / {Shield.EnergyMax * 100f:F0}");
+            Widgets.Label(energyBar, EnergyLabel);
             Text.Anchor = TextAnchor.UpperLeft;
-            TooltipHandler.TipRegion(tooltipRegion, Shield.Props.customTooltipKey?.Translate() ?? ShieldDefaults.PersonalShieldTooltip);
+            TooltipHandler.TipRegion(tooltipRegion, Tooltip);
             return new GizmoResult(GizmoState.Clear);
         }
     }
